@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeToolsHub - Free Online Tools for Everyone</title>
+    <meta name="description" content="Compress images, generate QR codes, passwords, convert PDF to Word, text to speech. Free tools to boost productivity. Fast, secure, no signup.">
+    <meta name="keywords" content="image compressor, qr code generator, password generator, pdf to word, text to speech, free tools">
+    <meta name="author" content="FreeToolsHub">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animations CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- SEO Open Graph -->
+    <meta property="og:title" content="FreeToolsHub - Free Online Tools">
+    <meta property="og:description" content="Best free online tools: image compressor, QR generator, more.">
+    <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
+    
+    <style>
+        /* Tailwind config for dark mode */
+        .dark { color-scheme: dark; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header with Ad -->
+    <header class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-tools text-2xl text-blue-600"></i>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">FreeToolsHub</h1>
+                </div>
+                
+                <!-- Dark/Light Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                    <i class="fas fa-sun text-yellow-500 hidden dark:hidden"></i>
+                    <i class="fas fa-moon text-gray-600 hidden light:hidden"></i>
+                </button>
+                
+                <!-- Desktop Ad Slot -->
+                <div id="header-ad" class="bg-gray-200 dark:bg-gray-700 p-2 rounded text-center text-sm max-w-xs">
+                    <!-- AdSense Header Ad Placeholder -->
+                    <div class="animate-pulse">Ad Space - Header (728x90)</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 px-4 text-center" data-aos="fade-up">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-6">
+                Free Online Tools
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Compress images, generate secure passwords, create QR codes, convert PDF to Word, and convert text to speech. 
+                Fast. Secure. No signup required.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#tools" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-lg">
+                    <i class="fas fa-rocket mr-2"></i>Start Using Tools
+                </a>
+                <a href="about.html" class="border-2 border-blue-600 hover:bg-blue-600 text-blue-600 hover:text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-lg">
+                    <i class="fas fa-info-circle mr-2"></i>About Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section id="tools" class="py-20 px-4">
+        <div class="container mx-auto">
+            <h3 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent" data-aos="fade-up">Our Free Tools</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Image Compressor -->
+                <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-compress-arrows-alt text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white text-center">Image Compressor</h4>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 text-center leading-relaxed">Reduce image file size without losing quality. Perfect for web and social media.</p>
+                    <a href="tools/image-compressor.html" class="block w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 px-6 rounded-xl text-center font-semibold shadow-lg hover:shadow-xl transition-all">
+                        Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- PDF to Word -->
+                <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-file-export text-2xl text-white"></i>
+                    </i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white text-center">PDF to Word</h4>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 text-center leading-relaxed">Convert PDF files to editable Word documents instantly in your browser.</p>
+                    <a href="tools/pdf-to-word.html" class="block w-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white py-3 px-6 rounded-xl text-center font-semibold shadow-lg hover:shadow-xl transition-all">
+                        Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Password Generator -->
+                <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-key text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white text-center">Password Generator</h4>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 text-center leading-relaxed">Generate strong, secure passwords with one click. Customizable length and characters.</p>
+                    <a href="tools/password-generator.html" class="block w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white py-3 px-6 rounded-xl text-center font-semibold shadow-lg hover:shadow-xl transition-all">
+                        Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- QR Code Generator -->
+                <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-qrcode text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white text-center">QR Code Generator</h4>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 text-center leading-relaxed">Create custom QR codes for websites, contacts, payments. Download instantly.</p>
+                    <a href="tools/qr-generator.html" class="block w-full bg-gradient-to-r from-purple-500 to-violet-500 hover:from-purple-600 hover:to-violet-600 text-white py-3 px-6 rounded-xl text-center font-semibold shadow-lg hover:shadow-xl transition-all">
+                        Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Text to Speech -->
+                <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-volume-up text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white text-center">Text to Speech</h4>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 text-center leading-relaxed">Convert any text to natural-sounding speech. Multiple voices and speeds available.</p>
+                    <a href="tools/text-to-speech.html" class="block w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white py-3 px-6 rounded-xl text-center font-semibold shadow-lg hover:shadow-xl transition-all">
+                        Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Affiliate Section -->
+    <section class="py-20 px-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
+        <div class="container mx-auto text-center" data-aos="fade-up">
+            <h3 class="text-4xl font-bold mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Recommended Tools</h3>
+            <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                    <i class="fas fa-cloud text-4xl text-blue-500 mb-4"></i>
+                    <p>Best cloud storage affiliate</p>
+                    <a href="#" class="text-blue-600 hover:underline font-semibold">Get 50GB Free →</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                    <i class="fas fa-vpn text-4xl text-green-500 mb-4"></i>
+                    <p>Secure VPN service</p>
+                    <a href="#" class="text-green-600 hover:underline font-semibold">30-day money back →</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                    <i class="fas fa-hosting text-4xl text-orange-500 mb-4"></i>
+                    <p>Website hosting</p>
+                    <a href="#" class="text-orange-600 hover:underline font-semibold">Get started →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-20 px-4" data-aos="fade-up">
+        <div class="container mx-auto max-w-2xl text-center bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-12">
+            <i class="fas fa-envelope text-5xl text-blue-500 mb-6 opacity-75"></i>
+            <h3 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Stay Updated</h3>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">Get notified when we add new tools. No spam, ever.</p>
+            <!-- Newsletter Form Placeholder -->
+            <form class="flex flex-col sm:flex-row gap-4 justify-center">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-4 rounded-xl border-2 border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:outline-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                <button type="submit" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all whitespace-nowrap">
+                    Subscribe Free
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Sidebar Ad (Desktop) -->
+    <div class="fixed right-4 top-32 lg:top-24 w-64 h-80 bg-gray-200 dark:bg-gray-700 rounded-xl p-4 shadow-xl hidden lg:block z-40 animate-pulse" id="sidebar-ad">
+        <!-- AdSense Sidebar Ad Placeholder (300x600) -->
+        Sidebar Ad Space
+    </div>
+
+    <!-- Footer with Ad -->
+    <footer class="bg-gray-900 text-white py-12 mt-20">
+        <div class="container mx-auto px-4 grid md:grid-cols-4 gap-8 text-center md:text-left">
+            <div>
+                <h4 class="text-xl font-bold mb-4 flex items-center justify-center md:justify-start">
+                    <i class="fas fa-tools mr-2 text-blue-400"></i>FreeToolsHub
+                </h4>
+                <p class="text-gray-400">Making your life easier with free tools.</p>
+            </div>
+            <div>
+                <h5 class="font-semibold mb-4">Tools</h5>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="tools/image-compressor.html" class="hover:text-white transition">Image Compressor</a></li>
+                    <li><a href="tools/qr-generator.html" class="hover:text-white transition">QR Generator</a></li>
+                    <li><a href="tools/password-generator.html" class="hover:text-white transition">Password Gen</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-semibold mb-4">Company</h5>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="about.html" class="hover:text-white transition">About</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-semibold mb-4">Footer Ad</h5>
+                <div class="bg-gray-800 p-4 rounded text-sm">
+                    <!-- AdSense Footer Ad Placeholder (468x60) -->
+                    Footer Ad Space
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2024 FreeToolsHub. All rights reserved. | Built with ❤️ for productivity.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // Init AOS animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
+

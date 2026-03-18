@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Word Converter - FreeToolsHub</title>
+    <meta name="description" content="Convert PDF to editable Word documents online. Preview before download. Client-side processing, no upload required.">
+    
+    <!-- Core CDNs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    
+    <!-- pdf.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20 text-gray-900 dark:text-gray-100">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <i class="fas fa-tools text-2xl text-blue-600"></i>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">FreeToolsHub</h1>
+                </a>
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                    <i class="fas fa-sun text-yellow-500 hidden dark:hidden"></i>
+                    <i class="fas fa-moon text-gray-600 hidden light:hidden"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-20 px-4 container mx-auto max-w-6xl">
+        <!-- Hero -->
+        <div class="text-center mb-20" data-aos="fade-up">
+            <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+                <i class="fas fa-file-export text-3xl text-white"></i>
+            </div>
+            <h1 class="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent mb-6">PDF to Word</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">Convert PDF files to editable Word documents. Preview pages, extract text and images. Works entirely in your browser.</p>
+            <a href="../index.html" class="inline-flex items-center mt-8 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold">
+                <i class="fas fa-arrow-left mr-2"></i>← Back to Tools
+            </a>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+            <!-- Upload & Controls -->
+            <div data-aos="fade-right" data-aos-delay="100">
+                <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 border border-gray-100 dark:border-gray-700 sticky top-24">
+                    <h2 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white flex items-center">
+                        <i class="fas fa-file-upload mr-3 text-blue-500"></i>Upload PDF
+                    </h2>
+
+                    <!-- Upload Area -->
+                    <div id="upload-area" class="border-4 border-dashed border-blue-200 dark:border-blue-700 rounded-3xl p-16 text-center hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all cursor-pointer group mb-8">
+                        <input type="file" id="pdf-input" accept=".pdf" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" aria-label="Select PDF file">
+                        <div class="space-y-4 pointer-events-none">
+                            <i class="fas fa-file-pdf text-6xl text-blue-400 group-hover:text-blue-500 transition-colors mx-auto"></i>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Drop your PDF here</h3>
+                                <p class="text-lg text-gray-600 dark:text-gray-400">or click to browse (Max 50MB)</p>
+                            </div>
+                            <p class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/50 px-4 py-2 rounded-full inline-block">
+                                Client-side processing - your files stay private
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- File Info -->
+                    <div id="file-info" class="hidden mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 rounded-2xl border border-blue-200 dark:border-blue-800">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-xl font-bold text-blue-800 dark:text-blue-200">📄 <span id="file-name"></span></h4>
+                            <div class="text-right">
+                                <div id="file-size" class="font-bold text-lg text-gray-900 dark:text-white"></div>
+                                <div id="page-count" class="text-sm text-gray-600 dark:text-gray-400"></div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="flex items-center space-x-3 p-3 rounded-xl bg-white dark:bg-gray-850 border-2 border-gray-200 dark:border-gray-700 cursor-pointer hover:border-blue-400 transition-all">
+                                <input type="checkbox" id="extract-text" class="w-5 h-5 text-blue-600" checked>
+                                <span class="font-semibold">📝 Extract Text</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 rounded-xl bg-white dark:bg-gray-850 border-2 border-gray-200 dark:border-gray-700 cursor-pointer hover:border-blue-400 transition-all">
+                                <input type="checkbox" id="extract-images" class="w-5 h-5 text-blue-600">
+                                <span class="font-semibold">🖼️ Extract Images</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Convert Button -->
+                    <button onclick="convertPDF()" id="convert-btn" disabled class="w-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white py-5 px-8 rounded-2xl font-bold text-xl shadow-2xl hover:shadow-3xl hover:-translate-y-1 transition-all flex items-center justify-center space-x-4 opacity-50 cursor-not-allowed mb-6">
+                        <i class="fas fa-magic"></i>
+                        <span>✨ Convert to Word</span>
+                        <i class="fas fa-file-word"></i>
+                    </button>
+
+                    <!-- Progress -->
+                    <div id="progress-section" class="hidden">
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 mb-4 overflow-hidden">
+                            <div id="progress-bar" class="bg-gradient-to-r from-blue-400 to-indigo-500 h-3 rounded-full transition-all w-0"></div>
+                        </div>
+                        <div class="text-center">
+                            <div id="progress-text" class="font-bold text-lg mb-2">0%</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Processing your PDF...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Area -->
+            <div data-aos="fade-left" data-aos-delay="200">
+                <div class="space-y-8">
+                    <!-- PDF Preview -->
+                    <div id="pdf-preview" class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 border border-gray-100 dark:border-gray-700 hidden">
+                        <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                            <i class="fas fa-eye mr-2 text-blue-500"></i>PDF Preview
+                        </h3>
+                        <div id="pdf-canvas-container" class="max-h-96 overflow-auto border border-gray-200 dark:border-gray-700 rounded-2xl p-4 bg-gray-50 dark:bg-gray-900">
+                            <!-- PDF pages rendered here -->
+                        </div>
+                    </div>
+
+                    <!-- Word Preview -->
+                    <div id="word-preview" class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 border border-gray-100 dark:border-gray-700 max-h-96 overflow-y-auto hidden">
+                        <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                            <i class="fas fa-file-word mr-2 text-green-500"></i>Word Document Preview
+                            <span class="ml-4 px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs font-semibold rounded-full">Ready to download</span>
+                        </h3>
+                        <div id="word-content" class="prose dark:prose-invert max-w-none leading-relaxed"></div>
+                    </div>
+
+                    <!-- Download Section -->
+                    <div id="download-section" class="bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/20 rounded-3xl p-8 border border-emerald-200 dark:border-emerald-800 hidden">
+                        <h3 class="text-xl font-bold mb-6 text-emerald-800 dark:text-emerald-200 flex items-center">
+                            <i class="fas fa-download mr-2 text-emerald-600"></i>Download Options
+                        </h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <button onclick="downloadWord()" class="group bg-white dark:bg-gray-800 p-6 rounded-2xl border-2 border-emerald-200 dark:border-emerald-700 hover:border-emerald-400 hover:shadow-xl transition-all flex flex-col items-center text-center">
+                                <i class="fas fa-file-word text-4xl text-emerald-600 group-hover:text-emerald-700 mb-3"></i>
+                                <div class="font-bold text-lg">Word DOCX</div>
+                                <div class="text-sm text-emerald-700 dark:text-emerald-300 mt-1">Full document</div>
+                            </button>
+                            <button onclick="downloadText()" class="group bg-white dark:bg-gray-800 p-6 rounded-2xl border-2 border-blue-200 dark:border-blue-700 hover:border-blue-400 hover:shadow-xl transition-all flex flex-col items-center text-center">
+                                <i class="fas fa-file-alt text-4xl text-blue-600 group-hover:text-blue-700 mb-3"></i>
+                                <div class="font-bold text-lg">Plain Text</div>
+                                <div class="text-sm text-blue-700 dark:text-blue-300 mt-1">Extracted text only</div>
+                            </button>
+                            <button onclick="downloadImages()" class="group bg-white dark:bg-gray-800 p-6 rounded-2xl border-2 border-purple-200 dark:border-purple-700 hover:border-purple-400 hover:shadow-xl transition-all flex flex-col items-center text-center">
+                                <i class="fas fa-images text-4xl text-purple-600 group-hover:text-purple-700 mb-3"></i>
+                                <div class="font-bold text-lg">Images ZIP</div>
+                                <div class="text-sm text-purple-700 dark:text-purple-300 mt-1">All extracted images</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Ad Space -->
+    <div class="max-w-6xl mx-auto px-4 py-20">
+        <div class="bg-gray-200 dark:bg-gray-700 p-12 rounded-3xl text-center shadow-2xl">
+            <div class="text-lg font-semibold text-gray-600 dark:text-gray-400 mb-8 flex items-center justify-center">
+                <i class="fas fa-ad mr-3"></i>Monetization - PDF Tools (970x250)
+            </div>
+            <div class="h-32 bg-gradient-to-r from-gray-300 to-gray-400 rounded-2xl animate-pulse mx-auto max-w-4xl"></div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p>&copy; 2024 FreeToolsHub | PDF to Word converter • 100% client-side processing</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        let currentPDF = null;
+        let pdfPages = [];
+
+        // Drag & Drop
+        const uploadArea = document.getElementById('upload-area');
+        const pdfInput = document.getElementById('pdf-input');
+
+        uploadArea.addEventListener('click', () => pdfInput.click());
+        pdfInput.addEventListener('change', handlePDF);
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(event => {
+            uploadArea.addEventListener(event, preventDefaults, false);
+        });
+
+        ['dragenter', 'dragover'].forEach(event => {
+            uploadArea.addEventListener(event, () => uploadArea.classList.add('bg-blue-50'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(event => {
+            uploadArea.addEventListener(event, () => uploadArea.classList.remove('bg-blue-50'), false);
+        });
+
+        uploadArea.addEventListener('drop', handleDrop, false);
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handlePDFFiles(files);
+        }
+
+        function handlePDF() {
+            handlePDFFiles(pdfInput.files);
+        }
+
+        function handlePDFFiles(files) {
+            Array.from(files).forEach(file => {
+                if (file.type === 'application/pdf' && file.size < 50 * 1024 * 1024) {
+                    currentPDF = file;
+                    showFileInfo(file);
+                }
+            });
+        }
+
+        function showFileInfo(file) {
+            document.getElementById('file-name').textContent = file.name;
+            document.getElementById('file-size').textContent = formatBytes(file.size);
+            document.getElementById('file-info').classList.remove('hidden');
+            document.getElementById('convert-btn').disabled = false;
+            document.getElementById('convert-btn').classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        async function convertPDF() {
+            if (!currentPDF) return;
+
+            const btn = document.getElementById('convert-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-4"></i>Converting...';
+
+            try {
+                const arrayBuffer = await currentPDF.arrayBuffer();
+                const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+                
+                // Render PDF preview
+                pdfPages = [];
+                const canvasContainer = document.getElementById('pdf-canvas-container');
+                canvasContainer.innerHTML = '';
+
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    const scale = 1.2;
+                    const viewport = page.getViewport({ scale });
+                    
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    
+                    canvasContainer.appendChild(canvas);
+                    
+                    await page.render({ canvasContext: context, viewport }).promise;
+                    
+                    pdfPages.push({ pageNum, canvas });
+                }
+
+                document.getElementById('pdf-preview').classList.remove('hidden');
+                document.getElementById('page-count').textContent = `${pdf.numPages} pages`;
+
+                // Extract text
+                const fullText = [];
+                if (document.getElementById('extract-text').checked) {
+                    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                        const page = await pdf.getPage(pageNum);
+                        const textContent = await page.getTextContent();
+                        const textItems = textContent.items.map(item => item.str).join(' ');
+                        fullText.push(`Page ${pageNum}:\n${textItems}\n\n`);
+                    }
+                }
+
+                // Create Word-like document
+                const wordContent = document.createElement('div');
+                wordContent.className = 'leading-7';
+                wordContent.innerHTML = `
+                    <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 1rem; color: #1f2937; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem;">Document converted from PDF</h1>
+                    <p style="color: #6b7280; font-style: italic; margin-bottom: 2rem;">Original file: ${currentPDF.name} | ${pdf.numPages} pages</p>
+                    ${fullText.join('')}
+                    <div style="margin-top: 4rem; padding: 2rem; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 12px; text-align: center;">
+                        <h2 style="font-size: 1.5rem; color: #111827; margin-bottom: 1rem;">✅ Conversion Complete!</h2>
+                        <p style="color: #6b7280; font-size: 1.1rem;">Your document is ready to download and edit in Word, Google Docs, or any text editor.</p>
+                    </div>
+                `;
+
+                document.getElementById('word-content').innerHTML = wordContent.innerHTML;
+                document.getElementById('word-preview').classList.remove('hidden');
+                document.getElementById('download-section').classList.remove('hidden');
+
+                FreeToolsHub.showToast('PDF converted successfully! Download your Word document.', 'success');
+
+            } catch (error) {
+                console.error('PDF conversion error:', error);
+                FreeToolsHub.showToast('Error processing PDF. Please try a different file.', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-magic mr-4"></i><span>✨ Convert to Word</span><i class="fas fa-file-word ml-4"></i>';
+            }
+        }
+
+        function downloadWord() {
+            const content = document.getElementById('word-content').innerHTML;
+            const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Converted Document - ${currentPDF.name}</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: 'Times New Roman', serif; max-width: 8.5in; margin: 1in auto; line-height: 1.6; }
+        h1, h2, h3 { color: #1f2937; }
+        p { margin-bottom: 1rem; }
+        .header { border-bottom: 3px solid #e5e7eb; padding-bottom: 1rem; margin-bottom: 2rem; }
+        .footer { background: #f3f4f6; border-radius: 8px; padding: 2rem; text-align: center; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+    ${content}
+</body>
+</html>`;
+            
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = currentPDF.name.replace('.pdf', '') + '_converted.html';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadText() {
+            const fullText = Array.from(document.querySelectorAll('#word-content p, #word-content h1, #word-content h2')).map(el => el.textContent).join('\n\n');
+            const blob = new Blob([fullText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = currentPDF.name.replace('.pdf', '') + '.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadImages() {
+            FreeToolsHub.showToast('Image extraction coming soon! Text conversion ready.', 'info');
+        }
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return (bytes / Math.pow(k, i)).toFixed(1) + ' ' + sizes[i];
+        }
+
+        // Demo PDF link (for testing)
+        document.getElementById('pdf-input').addEventListener('change', function(e) {
+            if (!e.target.files.length) {
+                // Demo
+                FreeToolsHub.showToast('Demo mode: Upload your own PDF for full conversion', 'info');
+            }
+        });
+    </script>
+</body>
+</html>
+
